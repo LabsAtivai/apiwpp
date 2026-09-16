@@ -9,8 +9,8 @@ services:
       - DATABASE_URL=${DATABASE_URL}
       - PORT=${PORT}
     networks:
-      - proxy
+      - ativaai
 
 networks:
-  proxy:
+  ativaai:
     external: true
