@@ -1,0 +1,20 @@
+services:
+  apiwpp:
+    build: .
+    container_name: apiwpp
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.apiwpp.rule=Host(`apiwpp.labsativa.com.br`)"
+      - "traefik.http.routers.apiwpp.entrypoints=websecure"
+      - "traefik.http.routers.apiwpp.tls.certresolver=letsencrypt"
+      - "traefik.http.services.apiwpp.loadbalancer.server.port=8001"
+
+networks:
+  proxy:
+    external: true
